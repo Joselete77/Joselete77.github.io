@@ -1,10 +1,10 @@
-const MAX_LETTERS = 5;
+const MAX_LETTERS = 6;
 
 class WordleWord extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.word = " ".repeat(MAX_LETTERS); //5 espacios en blanco que es el tamaño máximo de cada palabra
+    this.word = " ".repeat(MAX_LETTERS); //6 espacios en blanco que es el tamaño máximo de cada palabra
   }
 
   static get styles() {
@@ -79,6 +79,7 @@ class WordleWord extends HTMLElement {
       :host(.sended) .letter:nth-child(3) { --delay: 0.4s; }
       :host(.sended) .letter:nth-child(4) { --delay: 0.6s; }
       :host(.sended) .letter:nth-child(5) { --delay: 0.8s; }
+      :host(.sended) .letter:nth-child(6) { --delay: 1.0s; }
       @keyframes spin {
         0% { transform: scaleY(0); }
         100% { transform: scaleY(1); }

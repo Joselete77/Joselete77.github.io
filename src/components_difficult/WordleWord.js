@@ -1,10 +1,10 @@
-const MAX_LETTERS = 5;
+const MAX_LETTERS = 4;
 
 class WordleWord extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.word = " ".repeat(MAX_LETTERS); //5 espacios en blanco que es el tamaño máximo de cada palabra
+    this.word = " ".repeat(MAX_LETTERS); //4 espacios en blanco que es el tamaño máximo de cada palabra
   }
 
   static get styles() {

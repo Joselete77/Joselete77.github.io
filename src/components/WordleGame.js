@@ -4954,6 +4954,101 @@ class WordleGame extends HTMLElement {
           flex-direction: column;
           font-weight: bold;
         }
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        font-family: 'Roboto', sans-serif;
+      }
+      body {
+        background: #d1d1d1;
+      }
+      .checkbox {
+        display: none;
+      }
+      header {
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+      }
+      .header-container {
+        width: 90%;
+        position: relative;
+        margin: 1rem auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header-logo {
+        width: 4rem;
+      }
+      .btn-label {
+        width: 2rem;
+        height: 1.4rem;
+      }
+      .header-button {
+        width: 2rem;
+        height: 0.2rem;
+        background: #000;
+        position: absolute;
+        top: 1.9rem;  
+        transition: all 0.2s;
+      }
+      .header-button::before,
+      .header-button::after {
+        content: "";
+        width: 2rem;
+        height: 0.2rem;
+        background: #000;
+        position: absolute;
+        top: -0.6rem;
+        transition: all 0.2s;
+      }
+      .header-button::after {
+        top: 0.6rem;
+      }
+      .menu {
+        background: #d1d1d1;
+        width: 100%;
+        height: 10rem;
+        position: fixed;
+        z-index: 9;
+        top: -12rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        padding-top: 2rem;
+        transition: all 0.5s;
+      }
+      ul {
+        list-style: none;
+      }
+      li {
+        margin: 0.5rem;
+      }
+      a {
+        margin: 0 1rem;
+        color: #000;
+        text-decoration: none;
+      }
+      .checkbox:checked ~ .menu {
+        background: #rgb(221, 220, 220);
+        top: 0rem;
+      }
+      .checkbox:checked + header .header-container label .header-button {
+        background: none;
+      }
+      .checkbox:checked + header .header-container label .header-button::before {
+        transform: rotate(35deg);
+        top: 0;
+      }
+      .checkbox:checked + header .header-container label .header-button::after {
+        transform: rotate(-35deg);
+        top: 0;
+      }
       `;
     }
   
@@ -5054,10 +5149,29 @@ class WordleGame extends HTMLElement {
       this.shadowRoot.innerHTML = /* html */`
       <style>${WordleGame.styles}</style>
       <div class="container">
+      <input type="checkbox" id="btn-nav" class="checkbox">
         <header>
-          <h1>Wordle</h1>
-          <h2>Hecho por <a>Joselete</a></h2>
+          <div class="header-container">
+            <a  href="wordle.html"><img class="header-logo" src="./assets/images/W.png"></a> 
+            <label for="btn-nav" class="btn-label">
+              <div class="header-button"></div> 
+            </label>
+          </div> 
         </header>
+      <nav class="menu">
+        <ul>
+          <a style= "position: relative; top: -15px" href="./assets/html/indexEditarPerfil.html"> <b>Editar perfil</b></a>
+          <a style= "position: relative; top: -15px" href="./assets/html/indexAmigos.html"> <b>Amigos </b></a>
+          <a style= "position: relative; top: -15px" href="./assets/php/mostrar_blog.php"> <b>Blog </b></a>
+          <a style= "position: relative; top: -15px" href="./assets/html/dificultad.html"> <b>Elegir dificultad </b></a>
+          <a style= "position: relative; top: -15px" href="./assets/html/comingsoon.html"> <b>Puntuacion </b></a>
+          <a style= "position: relative; top: -15px" href="./assets/html/comingsoon.html"> <b>Chat </b></a>
+          <a style= "position: relative; top: -15px" href="./assets/html/comingsoon.html"> <b>Modo daltonico </b></a>
+          <a style= "position: relative; top: -15px" href="./assets/php/cerrar_sesion.php"> <b>Cerrar sesión </b></a>
+
+        </ul>      
+      </nav>        
+
         <div class="words">
           <wordle-word current></wordle-word>
           <wordle-word></wordle-word>
@@ -5069,6 +5183,18 @@ class WordleGame extends HTMLElement {
         <wordle-keyboard></wordle-keyboard>
       </div>`;
     }
+  }
+
+  document.getElementById('id-sun').onclick = function(){
+    document.getElementById('page').classList.remove('dark-mode')
+    document.getElementById('id-moon').classList.remove('active')
+    this.classList.add('active')
+  }
+
+  document.getElementById('id-moon').onclick = function(){
+    document.getElementById('page').classList.add('dark-mode')
+    document.getElementById('id-sun').classList.remove('active')
+    this.classList.add('active')
   }
   
   customElements.define("wordle-game", WordleGame);
